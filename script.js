@@ -72,28 +72,31 @@ let runners = {
   duck: {
     name: "duck",
     id: "duck",
-    voice: "quack",
-    img: "./audio/Duck quack.mp3",
+    voice: "./audio/Duck quack.mp",
+    img: "./photos/duck.gif",
     step: 40,
   },
   chick: {
     name: "chick",
     id: "chick",
-    voice: "cheap",
-    img: "./audio/chick.wav",
+    voice: "./audio/chick.wav",
+    img: "./photos.chick.gif",
     step: 30,
   },
 };
 
+
+const startRaceBtn = document.getElementById("startRaceBtn");
+const stepLeft = document.getElementById("countSteps");
+const raceImg = document.getElementById("raceImg");
+const timer = document.getElementById("timer");
+let stepCount = 1000;
+
 function race2(obj) {
-  if (stepCount > obj.step) {
+  
+  stepCOUNT(obj);
+  stepLeft.innerHTML = stepCount
     raceImg.src = obj.img
-    stepLeft.innerHTML = `steps left : ${stepCount}`;
-    setTimeout(() => {
-      stepCount = stepCount - obj.step;
-      stepLeft.innerHTML = `steps left : ${stepCount}`;
-      race(obj);
-    }, 3000);
     let seconds = 0;
         setInterval(function () {
           timer.innerHTML = ` time : ${seconds++}`;
@@ -102,15 +105,24 @@ function race2(obj) {
         let audio = new Audio(obj.voice)
         audio.play()
 
-        race2(obj)
+  }
+
+
+function stepCOUNT(obj) {
+
+  if (stepCount > obj.step) {
+    setTimeout(() => {
+      stepCount = stepCount - obj.step;
+      stepLeft.innerHTML = `steps left : ${stepCount}`;
+      stepCOUNT(obj)
+    }, 3000);
+
+  }else{
+    return;
   }
 }
 
-const startRaceBtn = document.getElementById("startRaceBtn");
-const stepLeft = document.getElementById("countSteps");
-const raceImg = document.getElementById("raceImg");
-const timer = document.getElementById("timer");
-let stepCount = 1000;
+
 
 startRaceBtn.addEventListener("click", () => {
   showChosenAnimal.style.display = "none";
@@ -143,15 +155,3 @@ startRaceBtn.addEventListener("click", () => {
   }
 });
 
-function race(obj) {
-  if (stepCount < obj.step) {
-    console.log("race end");
-  } else {
-    stepLeft.innerHTML = `steps left : ${stepCount}`;
-    setTimeout(() => {
-      stepCount = stepCount - obj.step;
-      stepLeft.innerHTML = `steps left : ${stepCount}`;
-      race(obj);
-    }, 3000);
-  }
-}
