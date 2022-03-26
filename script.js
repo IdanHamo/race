@@ -58,32 +58,53 @@ let runners = {
   dog: {
     name: "dog",
     id: "dog",
-    voice: "woof",
-    img: "dog.gif",
+    voice: "./audio/dog beath.wav",
+    img: "./photos/dog.gif",
     step: 50,
   },
   horse: {
     name: "horse",
     id: "horse",
-    voice: "neigh",
-    img: "horse.gif",
+    voice: "./audio/horse steps.wav",
+    img: "./photos/horse.gif",
     step: 70,
   },
   duck: {
     name: "duck",
     id: "duck",
     voice: "quack",
-    img: "duck.gif",
+    img: "./audio/Duck quack.mp3",
     step: 40,
   },
   chick: {
     name: "chick",
     id: "chick",
     voice: "cheap",
-    img: "chick.gif",
+    img: "./audio/chick.wav",
     step: 30,
   },
 };
+
+function race2(obj) {
+  if (stepCount > obj.step) {
+    raceImg.src = obj.img
+    stepLeft.innerHTML = `steps left : ${stepCount}`;
+    setTimeout(() => {
+      stepCount = stepCount - obj.step;
+      stepLeft.innerHTML = `steps left : ${stepCount}`;
+      race(obj);
+    }, 3000);
+    let seconds = 0;
+        setInterval(function () {
+          timer.innerHTML = ` time : ${seconds++}`;
+        }, 1000);
+
+        let audio = new Audio(obj.voice)
+        audio.play()
+
+        race2(obj)
+  }
+}
 
 const startRaceBtn = document.getElementById("startRaceBtn");
 const stepLeft = document.getElementById("countSteps");
@@ -98,41 +119,25 @@ startRaceBtn.addEventListener("click", () => {
   switch (chosen) {
     case 1:
       console.log("hello from horse");
-      raceImg.src = "./photos/horse.gif";
-
-      if (stepCount > runners.horse.step) {
-        let seconds = 0;
-        setInterval(function () {
-          timer.innerHTML = ` time : ${seconds++}`;
-        }, 1000);
-        race(runners.horse);
-        horseSteps = new Audio("./audio/horse steps.wav");
-        horseSteps.play();
-      }
-
+      race2(runners.horse)
+      
       break;
 
     case 2:
       console.log("hello from duck");
-      raceImg.src = "./photos/duck.gif";
-
-      race(runners.duck);
+      race2(runners.duck)
 
       break;
 
     case 3:
       console.log("hello from dog");
-      raceImg.src = "./photos/dog.gif";
-
-      race(runners.dog);
+      race2(runners.dog)
 
       break;
 
     case 4:
       console.log("hello from chick");
-      raceImg.src = "./photos/chick.gif";
-
-      race(runners.chick);
+      race2(runners.chick)
 
       break;
   }
