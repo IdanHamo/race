@@ -1,0 +1,101 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #073153;
+  overflow: hidden;
+}
+
+.start-btn-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#start-btn {
+  width: 100px;
+  height: 60px;
+  font-size: 2rem;
+  background-color: #0d4c80;
+}
+
+#animals {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.animal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+}
+img {
+  width: 80%;
+  height: auto;
+}
+
+.choose {
+  width: 100px;
+  height: 40px;
+}
+#showAnimal {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+}
+h2 {
+  margin-block-end: 200px;
+  font-size: 3rem;
+}
+#showAnimalImg {
+  width: 50%;
+}
+
+#race {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: relative;
+}
+
+#countSteps {
+  width: 100px;
+  height: 40px;
+  border: 2px solid crimson;
+}
+#timer {
+  width: 100px;
+  height: 40px;
+  border: 2px solid rgb(220, 20, 160);
+}
+#raceImg {
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 992px) {
+  body {
+    overflow-y: visible;
+  }
+  #animals {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .animal {
+    width: 40%;
+  }
+  img {
+    width: 100%;
+  }
+} ;

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div id="start-btn-div">
+      <button id="start-btn">start</button>
+    </div>
+    <div id="animals">
+      <div class="animal">
+        <img src="./photos/horse.gif" alt="horse" />
+        <button class="choose" id="choose-horse">Horse</button>
+      </div>
+      <div class="animal">
+        <img src="./photos/duck.gif" alt="duck" /><button
+          class="choose"
+          id="choose-duck"
+        >
+          Duck
+        </button>
+      </div>
+      <div class="animal">
+        <img src="./photos/dog.gif" alt="dog" /><button
+          class="choose"
+          id="choose-dog"
+        >
+          Dog
+        </button>
+      </div>
+      <div class="animal">
+        <img src="./photos/chick.gif" alt="chick" />
+        <button class="choose" id="choose-chick">Chick</button>
+      </div>
+    </div>
+
+    <div id="showAnimal">
+      <h2>You choose ...</h2>
+      <img id="showAnimalImg" src="" alt="" />
+      <button id="startRaceBtn">start race</button>
+    </div>
+
+    <div id="race">
+      <p id="countSteps">steps left :</p>
+      <div id="timer"></div>
+      <img id="raceImg" src="" alt="" />
+    </div>
+  </body>
+</html>
