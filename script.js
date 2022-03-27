@@ -58,7 +58,7 @@ let runners = {
   dog: {
     name: "dog",
     id: "dog",
-    voice: "./audio/dog beath.wav",
+    voice: "./audio/dog breath.wav",
     img: "./photos/dog.gif",
     step: 50,
   },
@@ -72,7 +72,7 @@ let runners = {
   duck: {
     name: "duck",
     id: "duck",
-    voice: "./audio/Duck quack.mp",
+    voice: "./audio/Duck-quack.mp3",
     img: "./photos/duck.gif",
     step: 40,
   },
@@ -80,11 +80,10 @@ let runners = {
     name: "chick",
     id: "chick",
     voice: "./audio/chick.wav",
-    img: "./photos.chick.gif",
+    img: "./photos/chick.gif",
     step: 30,
   },
 };
-
 
 const startRaceBtn = document.getElementById("startRaceBtn");
 const stepLeft = document.getElementById("countSteps");
@@ -92,37 +91,30 @@ const raceImg = document.getElementById("raceImg");
 const timer = document.getElementById("timer");
 let stepCount = 1000;
 
-function race2(obj) {
-  
-  stepCOUNT(obj);
-  stepLeft.innerHTML = stepCount
-    raceImg.src = obj.img
-    let seconds = 0;
-        setInterval(function () {
-          timer.innerHTML = ` time : ${seconds++}`;
-        }, 1000);
+function race2(animal) {
+  stepLeft.innerHTML = stepCount;
+  stepCOUNT(animal);
+  raceImg.src = animal.img;
+  let seconds = 0;
+  setInterval(function () {
+    timer.innerHTML = ` time : ${seconds++}`;
+  }, 1000);
 
-        let audio = new Audio(obj.voice)
-        audio.play()
+  let audio = new Audio(animal.voice);
+  audio.play();
+}
 
-  }
-
-
-function stepCOUNT(obj) {
-
-  if (stepCount > obj.step) {
+function stepCOUNT(animal) {
+  if (stepCount > animal.step) {
     setTimeout(() => {
-      stepCount = stepCount - obj.step;
+      stepCount = stepCount - animal.step;
       stepLeft.innerHTML = `steps left : ${stepCount}`;
-      stepCOUNT(obj)
+      stepCOUNT(animal);
     }, 3000);
-
-  }else{
+  } else {
     return;
   }
 }
-
-
 
 startRaceBtn.addEventListener("click", () => {
   showChosenAnimal.style.display = "none";
@@ -131,27 +123,26 @@ startRaceBtn.addEventListener("click", () => {
   switch (chosen) {
     case 1:
       console.log("hello from horse");
-      race2(runners.horse)
-      
+      race2(runners.horse);
+
       break;
 
     case 2:
       console.log("hello from duck");
-      race2(runners.duck)
+      race2(runners.duck);
 
       break;
 
     case 3:
       console.log("hello from dog");
-      race2(runners.dog)
+      race2(runners.dog);
 
       break;
 
     case 4:
       console.log("hello from chick");
-      race2(runners.chick)
+      race2(runners.chick);
 
       break;
   }
 });
-
