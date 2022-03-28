@@ -123,8 +123,8 @@ function stepCOUNT(animal) {
       raceDiv.style.display = "none";
       congraz.style.display = "flex";
       congraz.innerHTML = `<h1 id="announcement"> you finish the race successfully</h1>
-      <p id="timeOfTheRace">in time of <span>${seconds}</span></p>`;
-    }, 7000);
+      <p id="timeOfTheRace">in time of <span>${seconds}</span> seconds</p>`;
+    }, 4000);
     return;
   }
 }
