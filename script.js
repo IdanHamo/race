@@ -89,13 +89,16 @@ const startRaceBtn = document.getElementById("startRaceBtn");
 const stepLeft = document.getElementById("countSteps");
 const raceImg = document.getElementById("raceImg");
 const timer = document.getElementById("timer");
+const endLine = document.getElementById("end-line");
+const congraz = document.getElementById("congraz");
+
 let stepCount = 1000;
 
+let seconds = 0;
 function race2(animal) {
   stepLeft.innerHTML = stepCount;
-  stepCOUNT(animal);
   raceImg.src = animal.img;
-  let seconds = 0;
+  stepCOUNT(animal);
   setInterval(function () {
     timer.innerHTML = ` time : ${seconds++}`;
   }, 1000);
@@ -105,13 +108,23 @@ function race2(animal) {
 }
 
 function stepCOUNT(animal) {
-  if (stepCount > animal.step) {
+  if (stepCount >= animal.step) {
     setTimeout(() => {
       stepCount = stepCount - animal.step;
       stepLeft.innerHTML = `steps left : ${stepCount}`;
       stepCOUNT(animal);
-    }, 3000);
+    }, 1000);
   } else {
+    endLine.style.display = "block";
+    endLine.style.animation = " endLine 7s linear";
+    raceImg.style.animation = "endOfRace 6s linear normal";
+
+    setTimeout(() => {
+      raceDiv.style.display = "none";
+      congraz.style.display = "flex";
+      congraz.innerHTML = `<h1 id="announcement"> you finish the race successfully</h1>
+      <p id="timeOfTheRace">in time of <span>${seconds}</span></p>`;
+    }, 7000);
     return;
   }
 }
@@ -122,7 +135,6 @@ startRaceBtn.addEventListener("click", () => {
 
   switch (chosen) {
     case 1:
-      console.log("hello from horse");
       race2(runners.horse);
 
       break;
